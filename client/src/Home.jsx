@@ -11,14 +11,8 @@ const Home = () => {
       const response = await axios.post("http://localhost:3000/search", {
         query,
       });
-      console.log("API Response:", response.data); // Log the entire response
-      const fetchedData = response.data.data;
-      console.log("Fetched Data:", fetchedData); // Log the fetched data
-      if (fetchedData && fetchedData.length > 0) {
-        setData(fetchedData[0].organic_results);
-      } else {
-        console.log("No data found"); // Log if no data is found
-      }
+      const data = response.data;
+      setData(data);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -26,29 +20,26 @@ const Home = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="bg-gray-400">
-        <div>
+      <div className="flex flex-col items-center">
+        <div className="font-black text-4xl mb-4 pt-4">Search Something...</div>
+        <div className="flex flex-row">
           <input
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            className="bg-blue-600"
+            className="bg-slate-400 border-2 rounded-b-sm pl-2"
+            placeholder="Search..."
           />
-          <button className="cursor-pointer" type="submit">
+          <button
+            className="cursor-pointer ml-2 bg-gray-300 p-1 border-2"
+            type="submit"
+          >
             Search
-          </button>{" "}
-          {data && (
-            <div className="text-black">
-              {data.map((result, index) => (
-                <div key={index}>
-                  <h3>{result.title}</h3>
-                  <a href={result.link}>{result.link}</a>
-                  <p>{result.snippet}</p>
-                </div>
-              ))}
-            </div>
-          )}
+          </button>
         </div>
+        {data && (
+          <div className="pt-8 ml-8 mr-8 w-auto">{JSON.stringify(data)}</div>
+        )}
       </div>
     </form>
   );
