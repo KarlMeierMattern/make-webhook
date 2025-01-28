@@ -4,11 +4,14 @@
   "main": "app.js",
   "type": "module",
   "scripts": {
-    "start": "",
-    "dev": ""
+    "dev": "concurrently \"cd client && npm run dev\" \"cd server && npm run dev\"",
+    "build": "concurrently \"cd client && npm run build\" \"cd server && npm run build\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "concurrently": "^9.1.2"
+  }
 }

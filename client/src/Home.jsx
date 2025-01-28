@@ -11,9 +11,13 @@ const Home = () => {
       const response = await axios.post("http://localhost:3000/search", {
         query,
       });
+      console.log("API Response:", response.data); // Log the entire response
       const fetchedData = response.data.data;
+      console.log("Fetched Data:", fetchedData); // Log the fetched data
       if (fetchedData && fetchedData.length > 0) {
         setData(fetchedData[0].organic_results);
+      } else {
+        console.log("No data found"); // Log if no data is found
       }
     } catch (error) {
       console.error("Error fetching data:", error);

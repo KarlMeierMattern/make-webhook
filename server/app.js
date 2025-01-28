@@ -34,16 +34,6 @@ app.post("/search", async (req, res) => {
   }
 });
 
-// app.get("/search", (req, res) => {
-//   // const { query } = req.query;
-
-//   if (searchData) {
-//     return res
-//       .status(200)
-//       .send({ message: "Data successfully sent", searchData });
-//   }
-// });
-
 app.listen(process.env.PORT, () => {
   console.log(
     `Server is listening on port http://localhost:${process.env.PORT} ✅`
